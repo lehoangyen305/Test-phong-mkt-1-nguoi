@@ -6,118 +6,36 @@
     <title>Marketing Manager - Du Học Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
         * { font-family: 'Inter', sans-serif; }
-
-        :root {
-            --primary: #2563eb;
-            --success: #22c55e;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --info: #3b82f6;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --text: #1e293b;
-            --border: #e2e8f0;
-            --muted: #64748b;
-        }
-
+        :root { --primary: #2563eb; --success: #22c55e; --warning: #f59e0b; --danger: #ef4444; --info: #3b82f6; --bg: #f8fafc; --card: #ffffff; --text: #1e293b; --border: #e2e8f0; --muted: #64748b; }
         body { background: var(--bg); color: var(--text); }
-
-        .tab-btn { 
-            transition: all 0.2s; 
-            border-bottom: 3px solid transparent;
-            white-space: nowrap;
-        }
-        .tab-btn.active { 
-            border-bottom-color: var(--primary); 
-            color: var(--primary);
-            font-weight: 600;
-        }
-        .tab-btn:hover:not(.active) { 
-            border-bottom-color: #cbd5e1; 
-            color: #475569;
-        }
-
-        .card {
-            background: var(--card);
-            border-radius: 12px;
-            border: 1px solid var(--border);
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            transition: box-shadow 0.2s;
-        }
+        .tab-btn { transition: all 0.2s; border-bottom: 3px solid transparent; white-space: nowrap; }
+        .tab-btn.active { border-bottom-color: var(--primary); color: var(--primary); font-weight: 600; }
+        .tab-btn:hover:not(.active) { border-bottom-color: #cbd5e1; color: #475569; }
+        .sub-tab-btn { padding: 8px 20px; border-radius: 8px; font-size: 0.875rem; font-weight: 500; cursor: pointer; border: 1px solid var(--border); background: white; transition: all 0.2s; }
+        .sub-tab-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+        .sub-tab-btn:hover:not(.active) { background: #f8fafc; }
+        .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: box-shadow 0.2s; }
         .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            padding: 2px 10px;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-        }
+        .badge { display: inline-flex; align-items: center; padding: 2px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; }
         .badge-red { background: #fef2f2; color: #dc2626; }
         .badge-amber { background: #fffbeb; color: #d97706; }
         .badge-green { background: #f0fdf4; color: #16a34a; }
         .badge-blue { background: #eff6ff; color: #2563eb; }
         .badge-purple { background: #faf5ff; color: #9333ea; }
         .badge-gray { background: #f1f5f9; color: #64748b; }
-
-        .alert-card {
-            border-left: 4px solid;
-            padding: 12px 16px;
-            border-radius: 8px;
-            background: white;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
+        .badge-teal { background: #f0fdfa; color: #0d9488; }
+        .alert-card { border-left: 4px solid; padding: 12px 16px; border-radius: 8px; background: white; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
         .alert-danger { border-left-color: var(--danger); background: #fef2f2; }
         .alert-warning { border-left-color: var(--warning); background: #fffbeb; }
         .alert-info { border-left-color: var(--info); background: #eff6ff; }
-
-        .progress-bar {
-            height: 8px;
-            border-radius: 4px;
-            background: #e2e8f0;
-            overflow: hidden;
-        }
-        .progress-fill {
-            height: 100%;
-            border-radius: 4px;
-            transition: width 0.5s ease;
-        }
-
-        .kpi-card {
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
-        }
-        .kpi-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
-        }
-
-        .btn {
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 500;
-            font-size: 0.875rem;
-            transition: all 0.2s;
-            cursor: pointer;
-            border: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .progress-bar { height: 8px; border-radius: 4px; background: #e2e8f0; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 4px; transition: width 0.5s ease; }
+        .kpi-card { padding: 20px; position: relative; overflow: hidden; }
+        .kpi-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; }
+        .btn { padding: 8px 16px; border-radius: 8px; font-weight: 500; font-size: 0.875rem; transition: all 0.2s; cursor: pointer; border: none; display: inline-flex; align-items: center; gap: 6px; }
         .btn-primary { background: var(--primary); color: white; }
         .btn-primary:hover { background: #1d4ed8; }
         .btn-success { background: var(--success); color: white; }
@@ -127,207 +45,63 @@
         .btn-ghost { background: transparent; color: var(--muted); }
         .btn-ghost:hover { background: #f1f5f9; }
         .btn-sm { padding: 6px 12px; font-size: 0.75rem; }
-
         .table-container { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; }
-        th { 
-            text-align: left; 
-            padding: 12px 16px; 
-            font-size: 0.75rem; 
-            font-weight: 600; 
-            color: var(--muted);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            border-bottom: 1px solid var(--border);
-            background: #f8fafc;
-        }
-        td { 
-            padding: 14px 16px; 
-            border-bottom: 1px solid var(--border);
-            font-size: 0.875rem;
-        }
+        th { text-align: left; padding: 12px 16px; font-size: 0.75rem; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border); background: #f8fafc; }
+        td { padding: 14px 16px; border-bottom: 1px solid var(--border); font-size: 0.875rem; }
         tr:hover td { background: #f8fafc; }
-
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.5);
-            z-index: 50;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 50; align-items: center; justify-content: center; padding: 20px; }
         .modal.active { display: flex; }
-        .modal-content {
-            background: white;
-            border-radius: 16px;
-            max-width: 600px;
-            width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
-        }
-
+        .modal-content { background: white; border-radius: 16px; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25); }
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-
-        .notification-badge {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: var(--danger);
-            color: white;
-            font-size: 0.625rem;
-            font-weight: 700;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .checkbox-custom {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #cbd5e1;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .checkbox-custom.checked {
-            background: var(--success);
-            border-color: var(--success);
-            color: white;
-        }
-
-        .prompt-card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 16px;
-            cursor: pointer;
-            transition: all 0.2s;
-            position: relative;
-        }
-        .prompt-card:hover {
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(37,99,235,0.1);
-        }
-        .prompt-card .copy-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            opacity: 0;
-            transition: opacity 0.2s;
-        }
+        .sub-tab-content { display: none; }
+        .sub-tab-content.active { display: block; }
+        .notification-badge { position: absolute; top: -4px; right: -4px; background: var(--danger); color: white; font-size: 0.625rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .checkbox-custom { width: 20px; height: 20px; border: 2px solid #cbd5e1; border-radius: 6px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .checkbox-custom.checked { background: var(--success); border-color: var(--success); color: white; }
+        .prompt-card { border: 1px solid var(--border); border-radius: 12px; padding: 16px; cursor: pointer; transition: all 0.2s; position: relative; }
+        .prompt-card:hover { border-color: var(--primary); box-shadow: 0 4px 12px rgba(37,99,235,0.1); }
+        .prompt-card .copy-btn { position: absolute; top: 12px; right: 12px; opacity: 0; transition: opacity 0.2s; }
         .prompt-card:hover .copy-btn { opacity: 1; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        .kanban-board { display: flex; gap: 16px; overflow-x: auto; padding-bottom: 8px; }
+        .kanban-column { min-width: 300px; max-width: 350px; flex: 1; }
+        .kanban-header { padding: 12px 16px; border-radius: 12px 12px 0 0; font-weight: 600; font-size: 0.875rem; display: flex; align-items: center; justify-content: space-between; }
+        .kanban-items { padding: 12px; min-height: 200px; }
+        .kanban-card { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 12px; margin-bottom: 10px; cursor: grab; transition: all 0.2s; }
+        .kanban-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-2px); }
+        .kanban-card.dragging { opacity: 0.5; }
+        .pnl-card { background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: white; border-radius: 16px; padding: 24px; }
+        .pnl-positive { color: #4ade80; }
+        .pnl-negative { color: #f87171; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-slide-in { animation: slideIn 0.3s ease; }
-
-        .toast {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            background: #1e293b;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 10px;
-            font-size: 0.875rem;
-            z-index: 100;
-            display: none;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        }
+        .toast { position: fixed; bottom: 24px; right: 24px; background: #1e293b; color: white; padding: 12px 20px; border-radius: 10px; font-size: 0.875rem; z-index: 100; display: none; align-items: center; gap: 8px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
         .toast.show { display: flex; animation: slideIn 0.3s ease; }
-
-        .filter-btn {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            background: white;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .filter-btn.active {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
+        .filter-btn { padding: 6px 14px; border-radius: 20px; font-size: 0.75rem; font-weight: 500; border: 1px solid var(--border); background: white; cursor: pointer; transition: all 0.2s; }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
         .filter-btn:hover:not(.active) { background: #f8fafc; }
-
-        .timeline-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            border: 2px solid;
-            background: white;
-        }
-        .timeline-line {
-            width: 2px;
-            background: var(--border);
-            position: absolute;
-            left: 5px;
-            top: 20px;
-            bottom: 0;
-        }
-
-        .expense-category-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.875rem;
-        }
-
-        @media (max-width: 768px) {
-            .kpi-grid { grid-template-columns: 1fr !important; }
-            .tabs-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .tabs-scroll::-webkit-scrollbar { display: none; }
-        }
+        .expense-category-icon { width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; }
+        @media (max-width: 768px) { .kpi-grid { grid-template-columns: 1fr !important; } .tabs-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; } .tabs-scroll::-webkit-scrollbar { display: none; } .kanban-board { flex-direction: column; } .kanban-column { max-width: 100%; min-width: 100%; } }
     </style>
 <base target="_blank">
 </head>
 <body>
+
     <!-- Header -->
     <header class="bg-white border-b border-gray-200 sticky top-0 z-40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg text-gray-900">Marketing Pro</h1>
-                        <p class="text-xs text-gray-500">Du Học Dashboard</p>
-                    </div>
+                    <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-lg"><i class="fas fa-graduation-cap"></i></div>
+                    <div><h1 class="font-bold text-lg text-gray-900">Marketing Pro</h1><p class="text-xs text-gray-500">Du Học Dashboard</p></div>
                 </div>
                 <div class="flex items-center gap-4">
-                    <div class="hidden sm:flex items-center gap-2 text-sm text-gray-600">
-                        <i class="far fa-calendar"></i>
-                        <span id="currentDate"></span>
-                    </div>
+                    <div class="hidden sm:flex items-center gap-2 text-sm text-gray-600"><i class="far fa-calendar"></i><span id="currentDate"></span></div>
                     <div class="relative">
-                        <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition">
-                            <i class="fas fa-bell"></i>
-                            <span class="notification-badge" id="notifBadge">5</span>
-                        </button>
+                        <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-600 hover:bg-gray-200 transition"><i class="fas fa-bell"></i><span class="notification-badge" id="notifBadge">5</span></button>
                     </div>
-                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">
-                        MK
-                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center text-white font-semibold text-sm">MK</div>
                 </div>
             </div>
         </div>
@@ -337,32 +111,14 @@
     <nav class="bg-white border-b border-gray-200 sticky top-16 z-30">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <div class="tabs-scroll flex gap-1 overflow-x-auto">
-                <button class="tab-btn active px-4 py-3 text-sm font-medium" data-tab="overview">
-                    <i class="fas fa-home mr-2"></i>Tổng quan
-                </button>
-                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="messages">
-                    <i class="fas fa-comments mr-2"></i>Tin nhắn
-                    <span class="ml-1 badge badge-red text-xs">47</span>
-                </button>
-                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="calendar">
-                    <i class="fas fa-calendar-alt mr-2"></i>Lịch đăng
-                </button>
-                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="ads">
-                    <i class="fas fa-bullhorn mr-2"></i>Ads & Chi phí
-                </button>
-                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="plan">
-                    <i class="fas fa-tasks mr-2"></i>Kế hoạch 3T
-                </button>
-                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="contracts">
-                    <i class="fas fa-file-contract mr-2"></i>Hợp đồng
-                    <span class="ml-1 badge badge-amber text-xs">3</span>
-                </button>
-                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="reports">
-                    <i class="fas fa-chart-pie mr-2"></i>Báo cáo
-                </button>
-                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="ai">
-                    <i class="fas fa-robot mr-2"></i>AI Prompts
-                </button>
+                <button class="tab-btn active px-4 py-3 text-sm font-medium" data-tab="overview"><i class="fas fa-home mr-2"></i>Tổng quan</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="messages"><i class="fas fa-comments mr-2"></i>Tin nhắn<span class="ml-1 badge badge-red text-xs">47</span></button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="calendar"><i class="fas fa-calendar-alt mr-2"></i>Lịch đăng</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="finance"><i class="fas fa-calculator mr-2"></i>Tài chính</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="plan"><i class="fas fa-columns mr-2"></i>Kế hoạch 3T</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="contracts"><i class="fas fa-file-contract mr-2"></i>Hợp đồng<span class="ml-1 badge badge-amber text-xs">3</span></button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="reports"><i class="fas fa-chart-pie mr-2"></i>Báo cáo</button>
+                <button class="tab-btn px-4 py-3 text-sm font-medium" data-tab="ai"><i class="fas fa-robot mr-2"></i>AI Prompts</button>
             </div>
         </div>
     </nav>
@@ -372,76 +128,48 @@
 
         <!-- TAB 1: TỔNG QUAN -->
         <div id="overview" class="tab-content active">
-            <!-- Alerts Section -->
             <div class="mb-6">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-exclamation-triangle text-amber-500 mr-2"></i>Cảnh báo quan trọng
-                    </h2>
-                    <button class="text-sm text-blue-600 hover:text-blue-700 font-medium" onclick="dismissAllAlerts()">
-                        Đánh dấu đã đọc tất cả
-                    </button>
+                    <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-exclamation-triangle text-amber-500 mr-2"></i>Cảnh báo quan trọng</h2>
+                    <button class="text-sm text-blue-600 hover:text-blue-700 font-medium" onclick="dismissAllAlerts()">Đánh dấu đã đọc tất cả</button>
                 </div>
                 <div id="alertsContainer" class="space-y-2"></div>
             </div>
 
-            <!-- KPI Cards -->
             <div class="kpi-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                 <div class="card kpi-card">
                     <div class="flex items-start justify-between">
                         <div>
                             <p class="text-sm text-gray-500 mb-1">Ngân sách Ads còn lại</p>
-                            <p class="text-2xl font-bold text-gray-900" id="kpiBudget">$12,450</p>
-                            <p class="text-xs text-red-500 mt-1 flex items-center">
-                                <i class="fas fa-arrow-down mr-1"></i>Còn 23% ngân sách Q3
-                            </p>
+                            <p class="text-2xl font-bold text-gray-900">$12,450</p>
+                            <p class="text-xs text-red-500 mt-1"><i class="fas fa-arrow-down mr-1"></i>Còn 23% ngân sách Q3</p>
                         </div>
-                        <div class="kpi-icon bg-blue-100 text-blue-600">
-                            <i class="fas fa-wallet"></i>
-                        </div>
+                        <div class="kpi-icon bg-blue-100 text-blue-600"><i class="fas fa-wallet"></i></div>
                     </div>
-                    <div class="progress-bar mt-4">
-                        <div class="progress-fill bg-blue-500" style="width: 23%"></div>
-                    </div>
+                    <div class="progress-bar mt-4"><div class="progress-fill bg-blue-500" style="width: 23%"></div></div>
                 </div>
-
                 <div class="card kpi-card">
                     <div class="flex items-start justify-between">
                         <div>
-                            <p class="text-sm text-gray-500 mb-1">Chi phí vận hành tháng 7</p>
-                            <p class="text-2xl font-bold text-gray-900" id="kpiExpense">$3,280</p>
-                            <p class="text-xs text-green-500 mt-1 flex items-center">
-                                <i class="fas fa-check mr-1"></i>Dưới ngân sách 15%
-                            </p>
+                            <p class="text-sm text-gray-500 mb-1">P&L Tháng 7</p>
+                            <p class="text-2xl font-bold text-green-600">+$8,420</p>
+                            <p class="text-xs text-green-500 mt-1"><i class="fas fa-arrow-up mr-1"></i>Lợi nhuận 34%</p>
                         </div>
-                        <div class="kpi-icon bg-green-100 text-green-600">
-                            <i class="fas fa-receipt"></i>
-                        </div>
+                        <div class="kpi-icon bg-green-100 text-green-600"><i class="fas fa-chart-line"></i></div>
                     </div>
-                    <div class="progress-bar mt-4">
-                        <div class="progress-fill bg-green-500" style="width: 65%"></div>
-                    </div>
+                    <div class="progress-bar mt-4"><div class="progress-fill bg-green-500" style="width: 68%"></div></div>
                 </div>
-
                 <div class="card kpi-card">
                     <div class="flex items-start justify-between">
                         <div>
                             <p class="text-sm text-gray-500 mb-1">Tin nhắn chưa trả lời</p>
-                            <p class="text-2xl font-bold text-gray-900" id="kpiMessages">47</p>
-                            <p class="text-xs text-amber-500 mt-1 flex items-center">
-                                <i class="fas fa-clock mr-1"></i>23 tin > 24h chưa trả lời
-                            </p>
+                            <p class="text-2xl font-bold text-gray-900">47</p>
+                            <p class="text-xs text-amber-500 mt-1"><i class="fas fa-clock mr-1"></i>23 tin > 24h</p>
                         </div>
-                        <div class="kpi-icon bg-amber-100 text-amber-600 relative">
-                            <i class="fas fa-comment-dots"></i>
-                            <span class="notification-badge">!</span>
-                        </div>
+                        <div class="kpi-icon bg-amber-100 text-amber-600 relative"><i class="fas fa-comment-dots"></i><span class="notification-badge">!</span></div>
                     </div>
-                    <div class="progress-bar mt-4">
-                        <div class="progress-fill bg-amber-500" style="width: 78%"></div>
-                    </div>
+                    <div class="progress-bar mt-4"><div class="progress-fill bg-amber-500" style="width: 78%"></div></div>
                 </div>
-
                 <div class="card kpi-card">
                     <div class="flex items-start justify-between">
                         <div>
@@ -449,25 +177,16 @@
                             <p class="text-2xl font-bold text-gray-900">8/12</p>
                             <p class="text-xs text-gray-500 mt-1">4 bài chưa lên lịch</p>
                         </div>
-                        <div class="kpi-icon bg-purple-100 text-purple-600">
-                            <i class="fas fa-pen-fancy"></i>
-                        </div>
+                        <div class="kpi-icon bg-purple-100 text-purple-600"><i class="fas fa-pen-fancy"></i></div>
                     </div>
-                    <div class="progress-bar mt-4">
-                        <div class="progress-fill bg-purple-500" style="width: 67%"></div>
-                    </div>
+                    <div class="progress-bar mt-4"><div class="progress-fill bg-purple-500" style="width: 67%"></div></div>
                 </div>
             </div>
 
-            <!-- To-do List -->
             <div class="card p-6">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-check-circle text-green-500 mr-2"></i>To-do hôm nay
-                    </h2>
-                    <button class="btn btn-primary btn-sm" onclick="openAddTodoModal()">
-                        <i class="fas fa-plus"></i>Thêm việc
-                    </button>
+                    <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-check-circle text-green-500 mr-2"></i>To-do hôm nay</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddTodoModal()"><i class="fas fa-plus"></i>Thêm việc</button>
                 </div>
                 <div id="todoList" class="space-y-2"></div>
             </div>
@@ -479,10 +198,7 @@
                 <div class="lg:w-2/3">
                     <div class="card p-6">
                         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-                            <h2 class="text-lg font-bold text-gray-900">
-                                <i class="fab fa-facebook-messenger text-blue-600 mr-2"></i>
-                                Tin nhắn từ Meta Business
-                            </h2>
+                            <h2 class="text-lg font-bold text-gray-900"><i class="fab fa-facebook-messenger text-blue-600 mr-2"></i>Tin nhắn từ Meta Business</h2>
                             <div class="flex gap-2">
                                 <button class="filter-btn active" data-filter="all">Tất cả</button>
                                 <button class="filter-btn" data-filter="facebook">Facebook</button>
@@ -495,19 +211,15 @@
                 </div>
                 <div class="lg:w-1/3">
                     <div class="card p-6 sticky top-32">
-                        <h3 class="font-bold text-gray-900 mb-4">
-                            <i class="fas fa-file-export text-green-500 mr-2"></i>Export sang CRM
-                        </h3>
+                        <h3 class="font-bold text-gray-900 mb-4"><i class="fas fa-file-export text-green-500 mr-2"></i>Export sang CRM</h3>
                         <div class="space-y-4">
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Đã chọn <span id="selectedCount" class="text-blue-600 font-bold">0</span> khách hàng</label>
-                                <div id="selectedLeads" class="space-y-2 max-h-48 overflow-y-auto">
-                                    <p class="text-sm text-gray-400 italic">Chọn khách hàng từ danh sách bên trái...</p>
-                                </div>
+                                <div id="selectedLeads" class="space-y-2 max-h-48 overflow-y-auto"><p class="text-sm text-gray-400 italic">Chọn khách hàng từ danh sách bên trái...</p></div>
                             </div>
                             <div>
                                 <label class="block text-sm font-medium text-gray-700 mb-2">Chuyển cho tư vấn viên</label>
-                                <select id="consultantSelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                                <select id="consultantSelect" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm">
                                     <option value="">-- Chọn tư vấn viên --</option>
                                     <option value="Chị Hương">Chị Hương - Du học Úc</option>
                                     <option value="Anh Minh">Anh Minh - Du học Canada</option>
@@ -515,12 +227,8 @@
                                     <option value="Anh Đức">Anh Đức - Du học Anh</option>
                                 </select>
                             </div>
-                            <button class="btn btn-success w-full justify-center" onclick="exportToCRM()">
-                                <i class="fas fa-download"></i>Export JSON
-                            </button>
-                            <button class="btn btn-ghost w-full justify-center text-sm" onclick="exportToExcel()">
-                                <i class="fas fa-file-excel"></i>Export Excel
-                            </button>
+                            <button class="btn btn-success w-full justify-center" onclick="exportToCRM()"><i class="fas fa-download"></i>Export JSON</button>
+                            <button class="btn btn-ghost w-full justify-center text-sm" onclick="exportToExcel()"><i class="fas fa-file-excel"></i>Export Excel</button>
                         </div>
                     </div>
                 </div>
@@ -531,82 +239,170 @@
         <div id="calendar" class="tab-content">
             <div class="card p-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-calendar-alt text-purple-500 mr-2"></i>Lịch đăng bài
-                    </h2>
-                    <button class="btn btn-primary btn-sm" onclick="openAddPostModal()">
-                        <i class="fas fa-plus"></i>Thêm bài đăng
-                    </button>
+                    <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-calendar-alt text-purple-500 mr-2"></i>Lịch đăng bài</h2>
+                    <button class="btn btn-primary btn-sm" onclick="openAddPostModal()"><i class="fas fa-plus"></i>Thêm bài đăng</button>
                 </div>
                 <div class="overflow-x-auto">
                     <table>
-                        <thead>
-                            <tr>
-                                <th>Thời gian</th>
-                                <th>Nội dung</th>
-                                <th>Kênh</th>
-                                <th>Loại</th>
-                                <th>Trạng thái</th>
-                                <th>Thao tác</th>
-                            </tr>
-                        </thead>
+                        <thead><tr><th>Thời gian</th><th>Nội dung</th><th>Kênh</th><th>Loại</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
                         <tbody id="postsTable"></tbody>
                     </table>
                 </div>
             </div>
         </div>
 
-        <!-- TAB 4: QUẢNG CÁO & CHI PHÍ -->
-        <div id="ads" class="tab-content">
-            <div class="card p-6 mb-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-bullhorn text-red-500 mr-2"></i>Ngân sách quảng cáo
-                    </h2>
-                    <span class="badge badge-amber">Cập nhật: 2 giờ trước</span>
+        <!-- TAB 4: TÀI CHÍNH (3 sub-tabs) -->
+        <div id="finance" class="tab-content">
+            <!-- P&L Summary Banner -->
+            <div class="pnl-card mb-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xl font-bold"><i class="fas fa-chart-line mr-2"></i>P&L Marketing - Tháng 7/2026</h2>
+                    <div class="flex gap-2">
+                        <button class="filter-btn active bg-white/20 text-white border-white/30" data-pnl="month">Tháng</button>
+                        <button class="filter-btn bg-white/10 text-white/70 border-white/20" data-pnl="quarter">Quý</button>
+                        <button class="filter-btn bg-white/10 text-white/70 border-white/20" data-pnl="year">Năm</button>
+                    </div>
                 </div>
-                <div id="campaignsList" class="space-y-4"></div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" id="pnlSummary">
+                    <div class="text-center">
+                        <p class="text-sm text-gray-300">Tổng thu</p>
+                        <p class="text-2xl font-bold text-white">$24,500</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm text-gray-300">Tổng chi</p>
+                        <p class="text-2xl font-bold text-white">$16,080</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm text-gray-300">Lợi nhuận</p>
+                        <p class="text-2xl font-bold pnl-positive">+$8,420</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-sm text-gray-300">Biên LN</p>
+                        <p class="text-2xl font-bold pnl-positive">34.4%</p>
+                    </div>
+                </div>
+                <div class="mt-4 pt-4 border-t border-white/10 grid grid-cols-3 gap-4 text-sm">
+                    <div><span class="text-gray-400">Chi phí cố định:</span> <span class="text-white font-medium">$2,149</span></div>
+                    <div><span class="text-gray-400">Chi phí campaign:</span> <span class="text-white font-medium">$13,931</span></div>
+                    <div><span class="text-gray-400">Thu marketing fee:</span> <span class="text-green-400 font-medium">$24,500</span></div>
+                </div>
             </div>
 
-            <div class="card p-6 mb-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-receipt text-green-500 mr-2"></i>Chi phí vận hành tháng 7
-                    </h2>
-                    <button class="btn btn-primary btn-sm" onclick="openAddExpenseModal()">
-                        <i class="fas fa-plus"></i>Thêm chi phí
-                    </button>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="expensesList"></div>
+            <!-- Sub-tabs -->
+            <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+                <button class="sub-tab-btn active" data-subtab="fixed"><i class="fas fa-receipt mr-2"></i>Chi phí cố định</button>
+                <button class="sub-tab-btn" data-subtab="campaign"><i class="fas fa-bullhorn mr-2"></i>Chi phí campaign</button>
+                <button class="sub-tab-btn" data-subtab="revenue"><i class="fas fa-hand-holding-usd mr-2"></i>Thu phí marketing</button>
             </div>
 
-            <div class="card p-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-check-double text-blue-500 mr-2"></i>Xin duyệt chi phí
-                    </h2>
-                    <button class="btn btn-primary btn-sm" onclick="openApprovalModal()">
-                        <i class="fas fa-plus"></i>Tạo đơn xin duyệt
-                    </button>
+            <!-- Sub-tab: Chi phí cố định -->
+            <div id="fixed" class="sub-tab-content active">
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-900">Chi phí cố định tháng 7</h2>
+                            <p class="text-sm text-gray-500">Các khoản chi định kỳ, không phụ thuộc campaign</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-bold text-gray-900">$2,149</p>
+                            <p class="text-xs text-gray-500">Ngân sách: $2,500</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="fixedExpensesList"></div>
                 </div>
-                <div id="approvalList" class="space-y-3"></div>
+            </div>
+
+            <!-- Sub-tab: Chi phí campaign -->
+            <div id="campaign" class="sub-tab-content">
+                <div class="card p-6 mb-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-900">Ngân sách quảng cáo & Campaign</h2>
+                            <p class="text-sm text-gray-500">Chi phí biến động theo từng chiến dịch</p>
+                        </div>
+                        <span class="badge badge-amber">Cập nhật: 2 giờ trước</span>
+                    </div>
+                    <div id="campaignsList" class="space-y-4"></div>
+                </div>
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-check-double text-blue-500 mr-2"></i>Xin duyệt chi phí campaign</h2>
+                        <button class="btn btn-primary btn-sm" onclick="openApprovalModal()"><i class="fas fa-plus"></i>Tạo đơn xin duyệt</button>
+                    </div>
+                    <div id="approvalList" class="space-y-3"></div>
+                </div>
+            </div>
+
+            <!-- Sub-tab: Thu phí marketing -->
+            <div id="revenue" class="sub-tab-content">
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-gray-900">Thu phí Marketing Fee từ trường</h2>
+                            <p class="text-sm text-gray-500">Commission, referral fee, sponsorship từ đối tác trường</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-2xl font-bold text-green-600">$24,500</p>
+                            <p class="text-xs text-green-500">↑ 18% so với T6</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Trường đối tác</th>
+                                    <th>Loại fee</th>
+                                    <th>Số lượng</th>
+                                    <th>Đơn giá</th>
+                                    <th>Tổng thu</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody id="revenueList"></tbody>
+                        </table>
+                    </div>
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                        <h4 class="font-bold text-blue-900 mb-2"><i class="fas fa-info-circle mr-2"></i>Cách tính Marketing Fee</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                            <div>
+                                <p class="font-medium text-blue-800">Commission</p>
+                                <p class="text-blue-600">% trên học phí sinh viên giới thiệu được</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-blue-800">Referral Fee</p>
+                                <p class="text-blue-600">Cố định/lead chất lượng gửi đến trường</p>
+                            </div>
+                            <div>
+                                <p class="font-medium text-blue-800">Sponsorship</p>
+                                <p class="text-blue-600">Trường tài trợ event, content, booth</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- TAB 5: KẾ HOẠCH 3 THÁNG -->
+        <!-- TAB 5: KẾ HOẠCH 3 THÁNG (KANBAN) -->
         <div id="plan" class="tab-content">
             <div class="card p-6">
-                <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-tasks text-indigo-500 mr-2"></i>Kế hoạch Q3/2026
-                    </h2>
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+                    <div>
+                        <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-columns text-indigo-500 mr-2"></i>Kế hoạch Q3/2026 - Kanban Board</h2>
+                        <p class="text-sm text-gray-500">Kéo thả task giữa các cột để cập nhật trạng thái</p>
+                    </div>
                     <div class="flex gap-2">
-                        <button class="filter-btn active" data-month="7">Tháng 7</button>
-                        <button class="filter-btn" data-month="8">Tháng 8</button>
-                        <button class="filter-btn" data-month="9">Tháng 9</button>
+                        <button class="filter-btn active" data-plan-month="7">Tháng 7</button>
+                        <button class="filter-btn" data-plan-month="8">Tháng 8</button>
+                        <button class="filter-btn" data-plan-month="9">Tháng 9</button>
                     </div>
                 </div>
-                <div id="planContent"></div>
+                <div class="flex gap-2 mb-6 overflow-x-auto pb-2">
+                    <button class="filter-btn active" data-campaign-filter="all">Tất cả campaign</button>
+                    <button class="filter-btn" data-campaign-filter="summer">Summer Sale</button>
+                    <button class="filter-btn" data-campaign-filter="backtoschool">Back-to-School</button>
+                    <button class="filter-btn" data-campaign-filter="midautumn">Mid-Autumn</button>
+                </div>
+                <div class="kanban-board" id="kanbanBoard"></div>
             </div>
         </div>
 
@@ -614,9 +410,7 @@
         <div id="contracts" class="tab-content">
             <div class="card p-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-file-contract text-orange-500 mr-2"></i>Hợp đồng & Thanh toán
-                    </h2>
+                    <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-file-contract text-orange-500 mr-2"></i>Hợp đồng & Thanh toán</h2>
                     <div class="flex gap-2">
                         <button class="filter-btn active" data-contract="all">Tất cả</button>
                         <button class="filter-btn" data-contract="overdue">Quá hạn</button>
@@ -631,16 +425,10 @@
         <div id="reports" class="tab-content">
             <div class="card p-6">
                 <div class="flex items-center justify-between mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-chart-pie text-teal-500 mr-2"></i>Báo cáo tháng 7/2026
-                    </h2>
+                    <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-chart-pie text-teal-500 mr-2"></i>Báo cáo tháng 7/2026</h2>
                     <div class="flex gap-2">
-                        <button class="btn btn-primary btn-sm" onclick="generatePDF()">
-                            <i class="fas fa-file-pdf"></i>Xuất PDF
-                        </button>
-                        <button class="btn btn-ghost btn-sm" onclick="sendReport()">
-                            <i class="fas fa-paper-plane"></i>Gửi sếp
-                        </button>
+                        <button class="btn btn-primary btn-sm" onclick="generatePDF()"><i class="fas fa-file-pdf"></i>Xuất PDF</button>
+                        <button class="btn btn-ghost btn-sm" onclick="sendReport()"><i class="fas fa-paper-plane"></i>Gửi sếp</button>
                     </div>
                 </div>
                 <div class="bg-gray-50 rounded-xl p-6 border border-gray-200">
@@ -670,16 +458,14 @@
                             <h4 class="font-bold text-gray-900 mb-3">Hiệu quả theo kênh</h4>
                             <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
                                 <table class="w-full">
-                                    <thead>
-                                        <tr class="bg-gray-50">
-                                            <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Kênh</th>
-                                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Chi phí</th>
-                                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Leads</th>
-                                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">ROAS</th>
-                                            <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">CPL</th>
-                                            <th class="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Đánh giá</th>
-                                        </tr>
-                                    </thead>
+                                    <thead><tr class="bg-gray-50">
+                                        <th class="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase">Kênh</th>
+                                        <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Chi phí</th>
+                                        <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">Leads</th>
+                                        <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">ROAS</th>
+                                        <th class="px-4 py-3 text-right text-xs font-semibold text-gray-500 uppercase">CPL</th>
+                                        <th class="px-4 py-3 text-center text-xs font-semibold text-gray-500 uppercase">Đánh giá</th>
+                                    </tr></thead>
                                     <tbody id="reportChannels"></tbody>
                                 </table>
                             </div>
@@ -707,15 +493,10 @@
         <div id="ai" class="tab-content">
             <div class="card p-6">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
-                    <h2 class="text-lg font-bold text-gray-900">
-                        <i class="fas fa-robot text-indigo-500 mr-2"></i>AI Prompt Library
-                    </h2>
+                    <h2 class="text-lg font-bold text-gray-900"><i class="fas fa-robot text-indigo-500 mr-2"></i>AI Prompt Library</h2>
                     <div class="flex gap-2">
-                        <input type="text" id="promptSearch" placeholder="Tìm prompt..." 
-                            class="border border-gray-300 rounded-lg px-3 py-2 text-sm w-64 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-                        <button class="btn btn-primary btn-sm" onclick="openAddPromptModal()">
-                            <i class="fas fa-plus"></i>Thêm
-                        </button>
+                        <input type="text" id="promptSearch" placeholder="Tìm prompt..." class="border border-gray-300 rounded-lg px-3 py-2 text-sm w-64 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <button class="btn btn-primary btn-sm" onclick="openAddPromptModal()"><i class="fas fa-plus"></i>Thêm</button>
                     </div>
                 </div>
                 <div class="flex gap-2 mb-6 flex-wrap">
@@ -732,10 +513,7 @@
     </main>
 
     <!-- Toast -->
-    <div id="toast" class="toast">
-        <i class="fas fa-check-circle text-green-400"></i>
-        <span id="toastMessage">Thao tác thành công!</span>
-    </div>
+    <div id="toast" class="toast"><i class="fas fa-check-circle text-green-400"></i><span id="toastMessage">Thao tác thành công!</span></div>
 
     <!-- MODALS -->
     <div id="addTodoModal" class="modal">
@@ -745,18 +523,8 @@
                 <button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addTodoModal')"><i class="fas fa-times"></i></button>
             </div>
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Nội dung</label>
-                    <input type="text" id="todoText" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="Nhập việc cần làm...">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Mức độ ưu tiên</label>
-                    <select id="todoPriority" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                        <option value="low">Thấp</option>
-                        <option value="medium" selected>Trung bình</option>
-                        <option value="high">Cao</option>
-                    </select>
-                </div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Nội dung</label><input type="text" id="todoText" class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500" placeholder="Nhập việc cần làm..."></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Mức độ ưu tiên</label><select id="todoPriority" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="low">Thấp</option><option value="medium" selected>Trung bình</option><option value="high">Cao</option></select></div>
                 <button class="btn btn-primary w-full justify-center" onclick="addTodo()">Thêm</button>
             </div>
         </div>
@@ -764,50 +532,18 @@
 
     <div id="addPostModal" class="modal">
         <div class="modal-content p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-bold">Thêm bài đăng mới</h3>
-                <button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addPostModal')"><i class="fas fa-times"></i></button>
-            </div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold">Thêm bài đăng mới</h3><button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addPostModal')"><i class="fas fa-times"></i></button></div>
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tiêu đề</label>
-                    <input type="text" id="postTitle" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tiêu đề bài đăng...">
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Tiêu đề</label><input type="text" id="postTitle" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tiêu đề bài đăng..."></div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Ngày đăng</label><input type="date" id="postDate" class="w-full border border-gray-300 rounded-lg px-3 py-2"></div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Giờ đăng</label><input type="time" id="postTime" class="w-full border border-gray-300 rounded-lg px-3 py-2"></div>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Ngày đăng</label>
-                        <input type="date" id="postDate" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Giờ đăng</label>
-                        <input type="time" id="postTime" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                    </div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Kênh</label><select id="postChannel" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="Facebook">Facebook</option><option value="Instagram">Instagram</option><option value="TikTok">TikTok</option><option value="Email">Email</option></select></div>
+                    <div><label class="block text-sm font-medium text-gray-700 mb-1">Loại</label><select id="postType" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="Video">Video</option><option value="Carousel">Carousel</option><option value="Blog">Blog</option><option value="Live">Live</option><option value="Story">Story</option></select></div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Kênh</label>
-                        <select id="postChannel" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                            <option value="Facebook">Facebook</option>
-                            <option value="Instagram">Instagram</option>
-                            <option value="TikTok">TikTok</option>
-                            <option value="Email">Email</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-1">Loại</label>
-                        <select id="postType" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                            <option value="Video">Video</option>
-                            <option value="Carousel">Carousel</option>
-                            <option value="Blog">Blog</option>
-                            <option value="Live">Live</option>
-                            <option value="Story">Story</option>
-                        </select>
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Caption</label>
-                    <textarea id="postCaption" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Nội dung caption..."></textarea>
-                </div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Caption</label><textarea id="postCaption" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Nội dung caption..."></textarea></div>
                 <button class="btn btn-primary w-full justify-center" onclick="addPost()">Thêm bài đăng</button>
             </div>
         </div>
@@ -815,34 +551,12 @@
 
     <div id="addExpenseModal" class="modal">
         <div class="modal-content p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-bold">Thêm chi phí vận hành</h3>
-                <button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addExpenseModal')"><i class="fas fa-times"></i></button>
-            </div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold">Thêm chi phí vận hành</h3><button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addExpenseModal')"><i class="fas fa-times"></i></button></div>
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Hạng mục</label>
-                    <select id="expenseCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                        <option value="personnel">👤 Nhân sự (lương + thưởng)</option>
-                        <option value="supplies">📦 Mua đồ / Vật tư</option>
-                        <option value="food">🍜 Ăn uống / Tiếp khách</option>
-                        <option value="shipping">🚚 Vận chuyển / Ship hàng</option>
-                        <option value="gifts">🎁 Quà tặng / Sampling</option>
-                        <option value="tools">🔧 Tools / Phần mềm</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Số tiền ($)</label>
-                    <input type="number" id="expenseAmount" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="0.00">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Mô tả</label>
-                    <input type="text" id="expenseDesc" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Chi tiết chi phí...">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Người tiếp (nếu có)</label>
-                    <input type="text" id="expensePerson" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tên người tiếp khách...">
-                </div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Hạng mục</label><select id="expenseCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="personnel">👤 Nhân sự (lương + thưởng)</option><option value="supplies">📦 Mua đồ / Vật tư</option><option value="food">🍜 Ăn uống / Tiếp khách</option><option value="shipping">🚚 Vận chuyển / Ship hàng</option><option value="gifts">🎁 Quà tặng / Sampling</option><option value="tools">🔧 Tools / Phần mềm</option></select></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Số tiền ($)</label><input type="number" id="expenseAmount" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="0.00"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Mô tả</label><input type="text" id="expenseDesc" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Chi tiết chi phí..."></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Người tiếp (nếu có)</label><input type="text" id="expensePerson" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tên người tiếp khách..."></div>
                 <button class="btn btn-primary w-full justify-center" onclick="addExpense()">Thêm chi phí</button>
             </div>
         </div>
@@ -850,30 +564,11 @@
 
     <div id="approvalModal" class="modal">
         <div class="modal-content p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-bold">Tạo đơn xin duyệt chi phí</h3>
-                <button class="text-gray-400 hover:text-gray-600" onclick="closeModal('approvalModal')"><i class="fas fa-times"></i></button>
-            </div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold">Tạo đơn xin duyệt chi phí</h3><button class="text-gray-400 hover:text-gray-600" onclick="closeModal('approvalModal')"><i class="fas fa-times"></i></button></div>
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Hạng mục</label>
-                    <select id="approvalCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                        <option value="ads">Quảng cáo tăng budget</option>
-                        <option value="kol">Hợp tác KOL mới</option>
-                        <option value="event">Tổ chức sự kiện</option>
-                        <option value="content">Thuê content freelancer</option>
-                        <option value="tool">Mua tool mới</option>
-                        <option value="other">Khác</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Số tiền ($)</label>
-                    <input type="number" id="approvalAmount" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="0.00">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Lý do</label>
-                    <textarea id="approvalReason" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Giải trình lý do xin duyệt..."></textarea>
-                </div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Hạng mục</label><select id="approvalCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="ads">Quảng cáo tăng budget</option><option value="kol">Hợp tác KOL mới</option><option value="event">Tổ chức sự kiện</option><option value="content">Thuê content freelancer</option><option value="tool">Mua tool mới</option><option value="other">Khác</option></select></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Số tiền ($)</label><input type="number" id="approvalAmount" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="0.00"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Lý do</label><textarea id="approvalReason" rows="3" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Giải trình lý do xin duyệt..."></textarea></div>
                 <button class="btn btn-primary w-full justify-center" onclick="submitApproval()">Gửi duyệt</button>
             </div>
         </div>
@@ -881,40 +576,33 @@
 
     <div id="addPromptModal" class="modal">
         <div class="modal-content p-6">
-            <div class="flex items-center justify-between mb-4">
-                <h3 class="text-lg font-bold">Thêm Prompt mới</h3>
-                <button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addPromptModal')"><i class="fas fa-times"></i></button>
-            </div>
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold">Thêm Prompt mới</h3><button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addPromptModal')"><i class="fas fa-times"></i></button></div>
             <div class="space-y-4">
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tiêu đề</label>
-                    <input type="text" id="promptTitle" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tên prompt...">
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Danh mục</label>
-                    <select id="promptCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2">
-                        <option value="caption">Caption</option>
-                        <option value="ads">Phân tích Ads</option>
-                        <option value="video">Kịch bản Video</option>
-                        <option value="email">Email</option>
-                        <option value="report">Báo cáo</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Template</label>
-                    <textarea id="promptTemplate" rows="6" class="w-full border border-gray-300 rounded-lg px-3 py-2 font-mono text-sm" placeholder="Nhập prompt template..."></textarea>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-700 mb-1">Tags (phân cách bằng dấu phẩy)</label>
-                    <input type="text" id="promptTags" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="du học, facebook, tư vấn...">
-                </div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Tiêu đề</label><input type="text" id="promptTitle" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tên prompt..."></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Danh mục</label><select id="promptCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="caption">Caption</option><option value="ads">Phân tích Ads</option><option value="video">Kịch bản Video</option><option value="email">Email</option><option value="report">Báo cáo</option></select></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Template</label><textarea id="promptTemplate" rows="6" class="w-full border border-gray-300 rounded-lg px-3 py-2 font-mono text-sm" placeholder="Nhập prompt template..."></textarea></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Tags (phân cách bằng dấu phẩy)</label><input type="text" id="promptTags" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="du học, facebook, tư vấn..."></div>
                 <button class="btn btn-primary w-full justify-center" onclick="addPrompt()">Thêm Prompt</button>
             </div>
         </div>
     </div>
 
-    <script>
+    <div id="addKanbanTaskModal" class="modal">
+        <div class="modal-content p-6">
+            <div class="flex items-center justify-between mb-4"><h3 class="text-lg font-bold">Thêm task mới</h3><button class="text-gray-400 hover:text-gray-600" onclick="closeModal('addKanbanTaskModal')"><i class="fas fa-times"></i></button></div>
+            <div class="space-y-4">
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Tên task</label><input type="text" id="kanbanTaskTitle" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tên công việc..."></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Campaign</label><select id="kanbanTaskCampaign" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="summer">Summer Sale</option><option value="backtoschool">Back-to-School</option><option value="midautumn">Mid-Autumn</option></select></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Hạng mục</label><select id="kanbanTaskCategory" class="w-full border border-gray-300 rounded-lg px-3 py-2"><option value="content">Content</option><option value="ads">Ads</option><option value="event">Event</option><option value="design">Design</option><option value="budget">Budget</option></select></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Người phụ trách</label><input type="text" id="kanbanTaskAssignee" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Tên người làm..."></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Deadline</label><input type="date" id="kanbanTaskDeadline" class="w-full border border-gray-300 rounded-lg px-3 py-2"></div>
+                <div><label class="block text-sm font-medium text-gray-700 mb-1">Mô tả</label><textarea id="kanbanTaskDesc" rows="2" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Mô tả công việc..."></textarea></div>
+                <button class="btn btn-primary w-full justify-center" onclick="addKanbanTask()">Thêm task</button>
+            </div>
+        </div>
+    </div>
 
+    <script>
         // ==================== DATA ====================
         const appData = {
             alerts: [
@@ -953,17 +641,26 @@
                 { id: 3, name: 'Du học Canada không chứng minh TC', channel: 'TikTok', budget: 4000, spent: 3680, roas: 4.2, cpl: 32, status: 'active' },
                 { id: 4, name: 'Du học Anh - Russell Group', channel: 'Facebook', budget: 3500, spent: 2100, roas: 2.5, cpl: 52, status: 'active' }
             ],
-            expenses: [
+            fixedExpenses: [
                 { id: 1, category: 'personnel', amount: 1500, description: 'Lương tháng 7 - Marketing team', date: '2026-07-01', approved: true, person: '' },
                 { id: 2, category: 'tools', amount: 99, description: 'Canva Pro annual', date: '2026-07-05', approved: true, person: '' },
-                { id: 3, category: 'food', amount: 120, description: 'Tiếp khách đối tác Úc', date: '2026-07-10', approved: true, person: 'Mr. John - Đại diện trường Sydney' },
-                { id: 4, category: 'supplies', amount: 250, description: 'In tờ rơi Summer Sale', date: '2026-07-12', approved: true, person: '' },
-                { id: 5, category: 'gifts', amount: 180, description: 'Quà sampling cho học sinh tại fair', date: '2026-07-15', approved: true, person: '' }
+                { id: 3, category: 'tools', amount: 50, description: 'Notion Team plan', date: '2026-07-05', approved: true, person: '' },
+                { id: 4, category: 'tools', amount: 200, description: 'Meta Business Suite tools', date: '2026-07-10', approved: true, person: '' },
+                { id: 5, category: 'supplies', amount: 150, description: 'Văn phòng phẩm, in ấn nội bộ', date: '2026-07-12', approved: true, person: '' },
+                { id: 6, category: 'food', amount: 50, description: 'Cơm trưa team meeting hàng tuần', date: '2026-07-15', approved: true, person: '' }
             ],
             approvals: [
                 { id: 1, category: 'ads', amount: 2000, reason: 'Tăng budget campaign Du học Úc do đang chạy tốt, ROAS 3.1x', status: 'approved', date: '2026-07-18' },
                 { id: 2, category: 'kol', amount: 1500, reason: 'Hợp tác KOL mới review du học Canada trên TikTok', status: 'pending', date: '2026-07-19' },
                 { id: 3, category: 'event', amount: 800, reason: 'Tổ chức offline workshop "Chuẩn bị hồ sơ du học"', status: 'pending', date: '2026-07-20' }
+            ],
+            revenue: [
+                { id: 1, school: 'ĐH Sydney', type: 'Commission', quantity: 12, unitPrice: 800, total: 9600, status: 'received' },
+                { id: 2, school: 'ĐH Toronto', type: 'Referral Fee', quantity: 25, unitPrice: 120, total: 3000, status: 'received' },
+                { id: 3, school: 'ĐH Melbourne', type: 'Commission', quantity: 8, unitPrice: 750, total: 6000, status: 'pending' },
+                { id: 4, school: 'ĐH Manchester', type: 'Sponsorship', quantity: 1, unitPrice: 3500, total: 3500, status: 'received' },
+                { id: 5, school: 'ĐH British Columbia', type: 'Commission', quantity: 5, unitPrice: 680, total: 3400, status: 'pending' },
+                { id: 6, school: 'ĐH Monash', type: 'Referral Fee', quantity: 15, unitPrice: 100, total: 1500, status: 'received' }
             ],
             contracts: [
                 { id: 1, partner: 'Nguyễn Văn Minh', type: 'KOL', value: 2500, signed_date: '2026-06-15', due_date: '2026-07-15', status: 'overdue', reminders: 3, notes: 'Bảo tuần sau chuyển, đã 2 tuần', payment_info: 'Vietcombank - 1234567890' },
@@ -971,45 +668,50 @@
                 { id: 3, partner: 'Freelancer Lan Anh', type: 'Freelancer', value: 350, signed_date: '2026-07-01', due_date: '2026-07-25', status: 'pending', reminders: 0, notes: 'Đang viết bài, deadline 24/7', payment_info: 'TPBank - 1122334455' },
                 { id: 4, partner: 'Agency Vinalink', type: 'Agency', value: 5000, signed_date: '2026-05-01', due_date: '2026-08-01', status: 'pending', reminders: 0, notes: 'Chạy ads tháng 7, thanh toán cuối tháng', payment_info: 'Vietinbank - 5566778899' }
             ],
-            plans: {
+            kanban: {
                 7: {
-                    month: 'Tháng 7',
-                    title: 'Summer Sale & TikTok Launch',
-                    checklist: [
-                        { text: 'Launch campaign Summer Sale 50%', done: true },
-                        { text: 'Mở TikTok Shop du học', done: false },
-                        { text: 'Setup email automation welcome series', done: true },
-                        { text: 'Chụp lookbook Q3 với Studio Pro', done: true },
-                        { text: 'Đăng 12 bài/tuần đều đặn', done: false }
-                    ],
-                    budget: 15000,
-                    kpi: { leads: 900, roas: 3.0, cpl: 40 }
+                    columns: [
+                        { id: 'todo', title: 'Chưa bắt đầu', color: 'bg-gray-100', tasks: [
+                            { id: 101, title: 'Viết 5 bài blog Summer Sale', campaign: 'summer', category: 'content', assignee: 'Lan Anh', deadline: '2026-07-15', desc: 'SEO blog về du học Úc, target từ khóa "du học Úc 2026"' },
+                            { id: 102, title: 'Setup TikTok Shop', campaign: 'summer', category: 'ads', assignee: 'MK Team', deadline: '2026-07-20', desc: 'Đăng ký và cấu hình TikTok Shop cho sản phẩm tư vấn' },
+                            { id: 103, title: 'Design booth Edu Fair', campaign: 'summer', category: 'design', assignee: 'Studio Pro', deadline: '2026-07-18', desc: 'Booth 3x3m, backdrop, standee, tờ rơi' }
+                        ]},
+                        { id: 'doing', title: 'Đang thực hiện', color: 'bg-blue-50', tasks: [
+                            { id: 104, title: 'Chạy FB Ads Summer Sale', campaign: 'summer', category: 'ads', assignee: 'MK Team', deadline: '2026-07-25', desc: 'Campaign target học sinh lớp 11-12, budget $5,000' },
+                            { id: 105, title: 'Quay video KOL Minh', campaign: 'summer', category: 'content', assignee: 'KOL Minh', deadline: '2026-07-22', desc: 'Video review du học Úc 60s, location: Sydney Opera House backdrop' }
+                        ]},
+                        { id: 'review', title: 'Chờ duyệt', color: 'bg-amber-50', tasks: [
+                            { id: 106, title: 'Email automation welcome series', campaign: 'summer', category: 'content', assignee: 'MK Team', deadline: '2026-07-20', desc: '3 email: welcome, case study, offer. Cần duyệt nội dung' }
+                        ]},
+                        { id: 'done', title: 'Hoàn thành', color: 'bg-green-50', tasks: [
+                            { id: 107, title: 'Chụp lookbook Q3', campaign: 'summer', category: 'design', assignee: 'Studio Pro', deadline: '2026-07-10', desc: '30 ảnh lookbook cho website và social media' },
+                            { id: 108, title: 'Xin duyệt budget Q3', campaign: 'summer', category: 'budget', assignee: 'MK Manager', deadline: '2026-07-05', desc: 'Tổng budget $15,000 cho Summer Sale campaign' }
+                        ]}
+                    ]
                 },
                 8: {
-                    month: 'Tháng 8',
-                    title: 'Back-to-School & Retargeting',
-                    checklist: [
-                        { text: 'Campaign Back-to-school 2026', done: false },
-                        { text: 'Optimize retargeting audience', done: false },
-                        { text: 'UGC series từ học sinh cũ', done: false },
-                        { text: 'SEO blog batch 20 bài', done: false },
-                        { text: 'Hội thảo offline "Chuẩn bị hồ sơ"', done: false }
-                    ],
-                    budget: 18000,
-                    kpi: { leads: 1000, roas: 3.2, cpl: 38 }
+                    columns: [
+                        { id: 'todo', title: 'Chưa bắt đầu', color: 'bg-gray-100', tasks: [
+                            { id: 201, title: 'Campaign Back-to-school 2026', campaign: 'backtoschool', category: 'ads', assignee: 'MK Team', deadline: '2026-08-05', desc: 'Target phụ huynh + học sinh lớp 12, budget $6,000' },
+                            { id: 202, title: 'UGC series 10 video', campaign: 'backtoschool', category: 'content', assignee: 'Học sinh cũ', deadline: '2026-08-15', desc: 'Thu thập video testimonial từ học sinh đã đi du học' },
+                            { id: 203, title: 'SEO blog batch 20 bài', campaign: 'backtoschool', category: 'content', assignee: 'Lan Anh', deadline: '2026-08-20', desc: '20 bài blog SEO về du học các nước' }
+                        ]},
+                        { id: 'doing', title: 'Đang thực hiện', color: 'bg-blue-50', tasks: [] },
+                        { id: 'review', title: 'Chờ duyệt', color: 'bg-amber-50', tasks: [] },
+                        { id: 'done', title: 'Hoàn thành', color: 'bg-green-50', tasks: [] }
+                    ]
                 },
                 9: {
-                    month: 'Tháng 9',
-                    title: 'Mid-Autumn & Q4 Planning',
-                    checklist: [
-                        { text: 'Mid-Autumn campaign cho du học sinh', done: false },
-                        { text: 'Lập kế hoạch Q4 2026', done: false },
-                        { text: 'Launch Loyalty program', done: false },
-                        { text: 'Review và renew hợp đồng KOL', done: false },
-                        { text: 'Báo cáo tổng kết Q3', done: false }
-                    ],
-                    budget: 16000,
-                    kpi: { leads: 850, roas: 3.1, cpl: 42 }
+                    columns: [
+                        { id: 'todo', title: 'Chưa bắt đầu', color: 'bg-gray-100', tasks: [
+                            { id: 301, title: 'Mid-Autumn campaign', campaign: 'midautumn', category: 'event', assignee: 'MK Team', deadline: '2026-09-10', desc: 'Event tặng bánh trung thu cho du học sinh và gia đình' },
+                            { id: 302, title: 'Lập kế hoạch Q4 2026', campaign: 'midautumn', category: 'budget', assignee: 'MK Manager', deadline: '2026-09-15', desc: 'Budget và strategy cho quý 4' },
+                            { id: 303, title: 'Launch Loyalty program', campaign: 'midautumn', category: 'ads', assignee: 'MK Team', deadline: '2026-09-20', desc: 'Chương trình giới thiệu bạn bè, tích điểm' }
+                        ]},
+                        { id: 'doing', title: 'Đang thực hiện', color: 'bg-blue-50', tasks: [] },
+                        { id: 'review', title: 'Chờ duyệt', color: 'bg-amber-50', tasks: [] },
+                        { id: 'done', title: 'Hoàn thành', color: 'bg-green-50', tasks: [] }
+                    ]
                 }
             },
             prompts: [
@@ -1051,25 +753,27 @@
         let currentPromptFilter = 'all';
         let currentMessageFilter = 'all';
         let currentContractFilter = 'all';
+        let currentCampaignFilter = 'all';
+        let currentSubTab = 'fixed';
+        let currentPnlPeriod = 'month';
 
         // ==================== INIT ====================
         document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('vi-VN', { 
-                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' 
-            });
-
+            document.getElementById('currentDate').textContent = new Date().toLocaleDateString('vi-VN', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
             renderAlerts();
             renderTodos();
             renderMessages();
             renderPosts();
+            renderFixedExpenses();
             renderCampaigns();
-            renderExpenses();
+            renderRevenue();
             renderApprovals();
-            renderPlan();
+            renderKanban();
             renderContracts();
             renderReport();
             renderPrompts();
             setupTabs();
+            setupSubTabs();
             setupFilters();
         });
 
@@ -1086,28 +790,34 @@
             });
         }
 
+        function setupSubTabs() {
+            document.querySelectorAll('.sub-tab-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const subtabId = this.dataset.subtab;
+                    document.querySelectorAll('.sub-tab-btn').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('.sub-tab-content').forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    document.getElementById(subtabId).classList.add('active');
+                    currentSubTab = subtabId;
+                });
+            });
+        }
+
         // ==================== ALERTS ====================
         function renderAlerts() {
             const container = document.getElementById('alertsContainer');
             const activeAlerts = appData.alerts.filter(a => !a.dismissed);
-
             if (activeAlerts.length === 0) {
                 container.innerHTML = '<p class="text-gray-400 text-sm italic">Không có cảnh báo nào 🎉</p>';
                 return;
             }
-
             container.innerHTML = activeAlerts.map(alert => `
                 <div class="alert-card alert-${alert.severity} animate-slide-in">
                     <i class="fas fa-${alert.severity === 'danger' ? 'exclamation-circle text-red-500' : alert.severity === 'warning' ? 'exclamation-triangle text-amber-500' : 'info-circle text-blue-500'}"></i>
-                    <div class="flex-1">
-                        <p class="text-sm font-medium text-gray-900">${alert.message}</p>
-                    </div>
-                    <button class="text-gray-400 hover:text-gray-600" onclick="dismissAlert(${alert.id})">
-                        <i class="fas fa-times"></i>
-                    </button>
+                    <div class="flex-1"><p class="text-sm font-medium text-gray-900">${alert.message}</p></div>
+                    <button class="text-gray-400 hover:text-gray-600" onclick="dismissAlert(${alert.id})"><i class="fas fa-times"></i></button>
                 </div>
             `).join('');
-
             document.getElementById('notifBadge').textContent = activeAlerts.length;
         }
 
@@ -1135,15 +845,11 @@
                     <div class="flex-1 ${todo.done ? 'line-through text-gray-400' : ''}">
                         <p class="text-sm font-medium">${todo.text}</p>
                         <div class="flex items-center gap-2 mt-1">
-                            <span class="badge badge-${todo.priority === 'high' ? 'red' : todo.priority === 'medium' ? 'amber' : 'gray'} text-xs">
-                                ${todo.priority === 'high' ? 'Cao' : todo.priority === 'medium' ? 'TB' : 'Thấp'}
-                            </span>
+                            <span class="badge badge-${todo.priority === 'high' ? 'red' : todo.priority === 'medium' ? 'amber' : 'gray'} text-xs">${todo.priority === 'high' ? 'Cao' : todo.priority === 'medium' ? 'TB' : 'Thấp'}</span>
                             <span class="text-xs text-gray-400">${todo.date}</span>
                         </div>
                     </div>
-                    <button class="text-gray-400 hover:text-red-500" onclick="deleteTodo(${todo.id})">
-                        <i class="fas fa-trash-alt text-sm"></i>
-                    </button>
+                    <button class="text-gray-400 hover:text-red-500" onclick="deleteTodo(${todo.id})"><i class="fas fa-trash-alt text-sm"></i></button>
                 </div>
             `).join('');
         }
@@ -1168,15 +874,7 @@
             const text = document.getElementById('todoText').value;
             const priority = document.getElementById('todoPriority').value;
             if (!text) return;
-
-            appData.todos.push({
-                id: Date.now(),
-                text,
-                done: false,
-                priority,
-                date: new Date().toISOString().split('T')[0]
-            });
-
+            appData.todos.push({ id: Date.now(), text, done: false, priority, date: new Date().toISOString().split('T')[0] });
             document.getElementById('todoText').value = '';
             closeModal('addTodoModal');
             renderTodos();
@@ -1187,18 +885,13 @@
         function renderMessages() {
             const container = document.getElementById('messagesList');
             let filtered = appData.leads;
-
             if (currentMessageFilter === 'facebook') filtered = filtered.filter(l => l.source === 'Facebook');
             else if (currentMessageFilter === 'instagram') filtered = filtered.filter(l => l.source === 'Instagram');
             else if (currentMessageFilter === 'unread') filtered = filtered.filter(l => l.status === 'new');
-
             container.innerHTML = filtered.map(lead => `
-                <div class="p-4 rounded-lg border border-gray-200 hover:shadow-md transition cursor-pointer ${selectedLeads.has(lead.id) ? 'ring-2 ring-blue-500 bg-blue-50' : 'bg-white'}"
-                     onclick="toggleLeadSelection(${lead.id})">
+                <div class="p-4 rounded-lg border border-gray-200 hover:shadow-md transition cursor-pointer ${selectedLeads.has(lead.id) ? 'ring-2 ring-blue-500 bg-blue-50' : 'bg-white'}" onclick="toggleLeadSelection(${lead.id})">
                     <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
-                            ${lead.name.charAt(0)}
-                        </div>
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">${lead.name.charAt(0)}</div>
                         <div class="flex-1 min-w-0">
                             <div class="flex items-center justify-between">
                                 <h4 class="font-semibold text-gray-900">${lead.name}</h4>
@@ -1217,11 +910,8 @@
         }
 
         function toggleLeadSelection(id) {
-            if (selectedLeads.has(id)) {
-                selectedLeads.delete(id);
-            } else {
-                selectedLeads.add(id);
-            }
+            if (selectedLeads.has(id)) selectedLeads.delete(id);
+            else selectedLeads.add(id);
             renderMessages();
             renderSelectedLeads();
         }
@@ -1229,65 +919,38 @@
         function renderSelectedLeads() {
             const container = document.getElementById('selectedLeads');
             document.getElementById('selectedCount').textContent = selectedLeads.size;
-
             if (selectedLeads.size === 0) {
                 container.innerHTML = '<p class="text-sm text-gray-400 italic">Chọn khách hàng từ danh sách bên trái...</p>';
                 return;
             }
-
             const selected = appData.leads.filter(l => selectedLeads.has(l.id));
             container.innerHTML = selected.map(lead => `
                 <div class="flex items-center justify-between p-2 bg-blue-50 rounded-lg text-sm">
                     <span class="font-medium text-gray-900">${lead.name}</span>
-                    <button class="text-red-400 hover:text-red-600" onclick="event.stopPropagation(); toggleLeadSelection(${lead.id})">
-                        <i class="fas fa-times"></i>
-                    </button>
+                    <button class="text-red-400 hover:text-red-600" onclick="event.stopPropagation(); toggleLeadSelection(${lead.id})"><i class="fas fa-times"></i></button>
                 </div>
             `).join('');
         }
 
         function exportToCRM() {
             const consultant = document.getElementById('consultantSelect').value;
-            if (selectedLeads.size === 0) {
-                showToast('Vui lòng chọn ít nhất 1 khách hàng', 'error');
-                return;
-            }
-            if (!consultant) {
-                showToast('Vui lòng chọn tư vấn viên', 'error');
-                return;
-            }
-
+            if (selectedLeads.size === 0) { showToast('Vui lòng chọn ít nhất 1 khách hàng', 'error'); return; }
+            if (!consultant) { showToast('Vui lòng chọn tư vấn viên', 'error'); return; }
             const selected = appData.leads.filter(l => selectedLeads.has(l.id));
             const exportData = selected.map(lead => ({
-                name: lead.name,
-                phone: lead.phone,
-                email: lead.email,
-                need: lead.need,
-                source: lead.source,
-                consultant: consultant,
-                chat_note: lead.chat_note,
+                name: lead.name, phone: lead.phone, email: lead.email, need: lead.need,
+                source: lead.source, consultant: consultant, chat_note: lead.chat_note,
                 transferred_at: new Date().toISOString().split('T')[0]
             }));
-
             const jsonStr = JSON.stringify(exportData, null, 2);
             const blob = new Blob([jsonStr], { type: 'application/json' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `leads_export_${new Date().toISOString().split('T')[0]}.json`;
-            a.click();
+            a.href = url; a.download = `leads_export_${new Date().toISOString().split('T')[0]}.json`; a.click();
             URL.revokeObjectURL(url);
-
-            // Update leads status
-            selected.forEach(lead => {
-                lead.status = 'transferred';
-                lead.consultant = consultant;
-                lead.transferred_at = new Date().toISOString().split('T')[0];
-            });
-
+            selected.forEach(lead => { lead.status = 'transferred'; lead.consultant = consultant; lead.transferred_at = new Date().toISOString().split('T')[0]; });
             selectedLeads.clear();
-            renderMessages();
-            renderSelectedLeads();
+            renderMessages(); renderSelectedLeads();
             showToast(`Đã export ${exportData.length} leads sang JSON`);
         }
 
@@ -1311,9 +974,7 @@
                     <td><span class="badge badge-${post.channel === 'Facebook' ? 'blue' : post.channel === 'Instagram' ? 'purple' : post.channel === 'TikTok' ? 'gray' : 'amber'} text-xs">${post.channel}</span></td>
                     <td><span class="text-sm text-gray-600">${post.type}</span></td>
                     <td><span class="badge badge-${post.status === 'Đã đăng' ? 'green' : post.status === 'Chờ duyệt' ? 'amber' : post.status === 'Chưa làm' ? 'gray' : 'red'} text-xs">${post.status}</span></td>
-                    <td>
-                        <button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Sửa</button>
-                    </td>
+                    <td><button class="text-blue-600 hover:text-blue-800 text-sm font-medium">Sửa</button></td>
                 </tr>
             `).join('');
         }
@@ -1329,58 +990,14 @@
             const channel = document.getElementById('postChannel').value;
             const type = document.getElementById('postType').value;
             const caption = document.getElementById('postCaption').value;
-
             if (!title || !date) return;
-
-            appData.posts.push({
-                id: Date.now(),
-                title,
-                date: `${date}T${time || '09:00'}`,
-                channel,
-                type,
-                caption,
-                status: 'Chưa lên lịch'
-            });
-
+            appData.posts.push({ id: Date.now(), title, date: `${date}T${time || '09:00'}`, channel, type, caption, status: 'Chưa lên lịch' });
             closeModal('addPostModal');
             renderPosts();
             showToast('Đã thêm bài đăng mới');
         }
 
-        // ==================== CAMPAIGNS ====================
-        function renderCampaigns() {
-            const container = document.getElementById('campaignsList');
-            container.innerHTML = appData.campaigns.map(camp => {
-                const pct = (camp.spent / camp.budget * 100).toFixed(0);
-                const isLow = pct > 80;
-                return `
-                <div class="p-4 rounded-lg border ${isLow ? 'border-red-200 bg-red-50' : 'border-gray-200 bg-white'}">
-                    <div class="flex items-center justify-between mb-2">
-                        <div>
-                            <h4 class="font-semibold text-gray-900">${camp.name}</h4>
-                            <span class="badge badge-blue text-xs mt-1">${camp.channel}</span>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-lg font-bold ${isLow ? 'text-red-600' : 'text-gray-900'}">$${camp.spent.toLocaleString()} / $${camp.budget.toLocaleString()}</p>
-                            <p class="text-xs ${isLow ? 'text-red-500' : 'text-gray-500'}">Còn $${(camp.budget - camp.spent).toLocaleString()}</p>
-                        </div>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill ${isLow ? 'bg-red-500' : 'bg-blue-500'}" style="width: ${pct}%"></div>
-                    </div>
-                    <div class="flex items-center justify-between mt-3 text-sm">
-                        <div class="flex gap-4">
-                            <span class="text-gray-600"><i class="fas fa-chart-line text-green-500 mr-1"></i>ROAS: ${camp.roas}x</span>
-                            <span class="text-gray-600"><i class="fas fa-user text-blue-500 mr-1"></i>CPL: $${camp.cpl}</span>
-                        </div>
-                        ${isLow ? '<span class="badge badge-red text-xs"><i class="fas fa-exclamation-circle mr-1"></i>Sắp hết tiền</span>' : ''}
-                    </div>
-                </div>
-                `;
-            }).join('');
-        }
-
-        // ==================== EXPENSES ====================
+        // ==================== FIXED EXPENSES ====================
         const expenseIcons = {
             personnel: { icon: '👤', color: 'bg-blue-100 text-blue-600', label: 'Nhân sự' },
             supplies: { icon: '📦', color: 'bg-amber-100 text-amber-600', label: 'Vật tư' },
@@ -1390,9 +1007,9 @@
             tools: { icon: '🔧', color: 'bg-purple-100 text-purple-600', label: 'Tools' }
         };
 
-        function renderExpenses() {
-            const container = document.getElementById('expensesList');
-            container.innerHTML = appData.expenses.map(exp => {
+        function renderFixedExpenses() {
+            const container = document.getElementById('fixedExpensesList');
+            container.innerHTML = appData.fixedExpenses.map(exp => {
                 const meta = expenseIcons[exp.category];
                 return `
                 <div class="p-4 rounded-lg border border-gray-200 bg-white hover:shadow-sm transition">
@@ -1422,22 +1039,57 @@
             const amount = parseFloat(document.getElementById('expenseAmount').value);
             const description = document.getElementById('expenseDesc').value;
             const person = document.getElementById('expensePerson').value;
-
             if (!amount || !description) return;
-
-            appData.expenses.push({
-                id: Date.now(),
-                category,
-                amount,
-                description,
-                date: new Date().toISOString().split('T')[0],
-                approved: true,
-                person
-            });
-
+            appData.fixedExpenses.push({ id: Date.now(), category, amount, description, date: new Date().toISOString().split('T')[0], approved: true, person });
             closeModal('addExpenseModal');
-            renderExpenses();
+            renderFixedExpenses();
             showToast('Đã thêm chi phí');
+        }
+
+        // ==================== CAMPAIGNS ====================
+        function renderCampaigns() {
+            const container = document.getElementById('campaignsList');
+            container.innerHTML = appData.campaigns.map(camp => {
+                const pct = (camp.spent / camp.budget * 100).toFixed(0);
+                const isLow = pct > 80;
+                return `
+                <div class="p-4 rounded-lg border ${isLow ? 'border-red-200 bg-red-50' : 'border-gray-200 bg-white'}">
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <h4 class="font-semibold text-gray-900">${camp.name}</h4>
+                            <span class="badge badge-blue text-xs mt-1">${camp.channel}</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-lg font-bold ${isLow ? 'text-red-600' : 'text-gray-900'}">$${camp.spent.toLocaleString()} / $${camp.budget.toLocaleString()}</p>
+                            <p class="text-xs ${isLow ? 'text-red-500' : 'text-gray-500'}">Còn $${(camp.budget - camp.spent).toLocaleString()}</p>
+                        </div>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill ${isLow ? 'bg-red-500' : 'bg-blue-500'}" style="width: ${pct}%"></div></div>
+                    <div class="flex items-center justify-between mt-3 text-sm">
+                        <div class="flex gap-4">
+                            <span class="text-gray-600"><i class="fas fa-chart-line text-green-500 mr-1"></i>ROAS: ${camp.roas}x</span>
+                            <span class="text-gray-600"><i class="fas fa-user text-blue-500 mr-1"></i>CPL: $${camp.cpl}</span>
+                        </div>
+                        ${isLow ? '<span class="badge badge-red text-xs"><i class="fas fa-exclamation-circle mr-1"></i>Sắp hết tiền</span>' : ''}
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        // ==================== REVENUE ====================
+        function renderRevenue() {
+            const container = document.getElementById('revenueList');
+            container.innerHTML = appData.revenue.map(rev => `
+                <tr>
+                    <td class="font-medium text-gray-900">${rev.school}</td>
+                    <td><span class="badge badge-${rev.type === 'Commission' ? 'green' : rev.type === 'Referral Fee' ? 'blue' : 'purple'} text-xs">${rev.type}</span></td>
+                    <td class="text-right">${rev.quantity}</td>
+                    <td class="text-right">$${rev.unitPrice.toLocaleString()}</td>
+                    <td class="text-right font-bold text-gray-900">$${rev.total.toLocaleString()}</td>
+                    <td><span class="badge badge-${rev.status === 'received' ? 'green' : 'amber'} text-xs">${rev.status === 'received' ? 'Đã nhận' : 'Chờ nhận'}</span></td>
+                </tr>
+            `).join('');
         }
 
         // ==================== APPROVALS ====================
@@ -1467,124 +1119,142 @@
             const category = document.getElementById('approvalCategory').value;
             const amount = parseFloat(document.getElementById('approvalAmount').value);
             const reason = document.getElementById('approvalReason').value;
-
             if (!amount || !reason) return;
-
-            appData.approvals.push({
-                id: Date.now(),
-                category,
-                amount,
-                reason,
-                status: 'pending',
-                date: new Date().toISOString().split('T')[0]
-            });
-
+            appData.approvals.push({ id: Date.now(), category, amount, reason, status: 'pending', date: new Date().toISOString().split('T')[0] });
             closeModal('approvalModal');
             renderApprovals();
             showToast('Đã gửi đơn xin duyệt');
         }
 
-        // ==================== PLAN ====================
-        function renderPlan() {
-            const plan = appData.plans[currentPlanMonth];
-            const container = document.getElementById('planContent');
-            const completed = plan.checklist.filter(c => c.done).length;
-            const total = plan.checklist.length;
-            const pct = Math.round(completed / total * 100);
+        // ==================== KANBAN BOARD ====================
+        function renderKanban() {
+            const board = document.getElementById('kanbanBoard');
+            const plan = appData.kanban[currentPlanMonth];
 
-            container.innerHTML = `
-                <div class="mb-6">
-                    <div class="flex items-center justify-between mb-2">
-                        <h3 class="text-xl font-bold text-gray-900">${plan.month}: ${plan.title}</h3>
-                        <span class="badge badge-blue text-sm">${completed}/${total} hoàn thành</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill bg-blue-500" style="width: ${pct}%"></div>
-                    </div>
-                </div>
+            board.innerHTML = plan.columns.map(col => {
+                let filteredTasks = col.tasks;
+                if (currentCampaignFilter !== 'all') {
+                    filteredTasks = filteredTasks.filter(t => t.campaign === currentCampaignFilter);
+                }
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div class="bg-blue-50 p-4 rounded-lg text-center">
-                        <p class="text-2xl font-bold text-blue-600">$${plan.budget.toLocaleString()}</p>
-                        <p class="text-sm text-gray-600">Ngân sách dự kiến</p>
+                return `
+                <div class="kanban-column">
+                    <div class="kanban-header ${col.color}">
+                        <span>${col.title}</span>
+                        <span class="badge badge-gray">${filteredTasks.length}</span>
                     </div>
-                    <div class="bg-green-50 p-4 rounded-lg text-center">
-                        <p class="text-2xl font-bold text-green-600">${plan.kpi.leads}</p>
-                        <p class="text-sm text-gray-600">KPI Leads</p>
-                    </div>
-                    <div class="bg-purple-50 p-4 rounded-lg text-center">
-                        <p class="text-2xl font-bold text-purple-600">${plan.kpi.roas}x</p>
-                        <p class="text-sm text-gray-600">Target ROAS</p>
-                    </div>
-                </div>
-
-                <div class="space-y-3">
-                    <h4 class="font-bold text-gray-900">Checklist</h4>
-                    ${plan.checklist.map((item, idx) => `
-                        <div class="flex items-center gap-3 p-3 rounded-lg border ${item.done ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'}">
-                            <div class="checkbox-custom ${item.done ? 'checked' : ''}" onclick="togglePlanItem(${currentPlanMonth}, ${idx})">
-                                ${item.done ? '<i class="fas fa-check text-xs"></i>' : ''}
+                    <div class="kanban-items ${col.color} rounded-b-xl">
+                        ${filteredTasks.map(task => `
+                            <div class="kanban-card" draggable="true" data-task-id="${task.id}">
+                                <div class="flex items-center gap-2 mb-2">
+                                    <span class="badge badge-${task.campaign === 'summer' ? 'red' : task.campaign === 'backtoschool' ? 'blue' : 'purple'} text-xs">${task.campaign === 'summer' ? 'Summer' : task.campaign === 'backtoschool' ? 'B2S' : 'Mid-Autumn'}</span>
+                                    <span class="badge badge-gray text-xs">${task.category}</span>
+                                </div>
+                                <h4 class="font-semibold text-gray-900 text-sm mb-1">${task.title}</h4>
+                                <p class="text-xs text-gray-500 mb-2">${task.desc}</p>
+                                <div class="flex items-center justify-between text-xs text-gray-400">
+                                    <span><i class="fas fa-user mr-1"></i>${task.assignee}</span>
+                                    <span><i class="fas fa-calendar mr-1"></i>${task.deadline}</span>
+                                </div>
                             </div>
-                            <span class="${item.done ? 'line-through text-gray-400' : 'text-gray-900'}">${item.text}</span>
-                        </div>
-                    `).join('')}
+                        `).join('')}
+                        <button class="w-full py-2 text-sm text-gray-400 hover:text-blue-600 border border-dashed border-gray-300 rounded-lg hover:border-blue-400 transition" onclick="openAddKanbanTaskModal('${col.id}')">
+                            <i class="fas fa-plus mr-1"></i>Thêm task
+                        </button>
+                    </div>
                 </div>
-            `;
+                `;
+            }).join('');
+
+            setupDragAndDrop();
         }
 
-        function togglePlanItem(month, idx) {
-            appData.plans[month].checklist[idx].done = !appData.plans[month].checklist[idx].done;
-            renderPlan();
+        function setupDragAndDrop() {
+            const cards = document.querySelectorAll('.kanban-card[draggable="true"]');
+            const columns = document.querySelectorAll('.kanban-items');
+
+            cards.forEach(card => {
+                card.addEventListener('dragstart', () => card.classList.add('dragging'));
+                card.addEventListener('dragend', () => card.classList.remove('dragging'));
+            });
+
+            columns.forEach(col => {
+                col.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    const afterElement = getDragAfterElement(col, e.clientY);
+                    const draggable = document.querySelector('.dragging');
+                    if (afterElement == null) col.appendChild(draggable);
+                    else col.insertBefore(draggable, afterElement);
+                });
+            });
+        }
+
+        function getDragAfterElement(container, y) {
+            const draggableElements = [...container.querySelectorAll('.kanban-card:not(.dragging)')];
+            return draggableElements.reduce((closest, child) => {
+                const box = child.getBoundingClientRect();
+                const offset = y - box.top - box.height / 2;
+                if (offset < 0 && offset > closest.offset) return { offset: offset, element: child };
+                else return closest;
+            }, { offset: Number.NEGATIVE_INFINITY }).element;
+        }
+
+        function openAddKanbanTaskModal(columnId) {
+            document.getElementById('addKanbanTaskModal').classList.add('active');
+        }
+
+        function addKanbanTask() {
+            const title = document.getElementById('kanbanTaskTitle').value;
+            const campaign = document.getElementById('kanbanTaskCampaign').value;
+            const category = document.getElementById('kanbanTaskCategory').value;
+            const assignee = document.getElementById('kanbanTaskAssignee').value;
+            const deadline = document.getElementById('kanbanTaskDeadline').value;
+            const desc = document.getElementById('kanbanTaskDesc').value;
+
+            if (!title) return;
+
+            const newTask = {
+                id: Date.now(),
+                title, campaign, category, assignee, deadline, desc
+            };
+
+            appData.kanban[currentPlanMonth].columns[0].tasks.push(newTask);
+            closeModal('addKanbanTaskModal');
+            renderKanban();
+            showToast('Đã thêm task mới');
         }
 
         // ==================== CONTRACTS ====================
         function renderContracts() {
             const container = document.getElementById('contractsList');
             let filtered = appData.contracts;
-
             if (currentContractFilter === 'overdue') filtered = filtered.filter(c => c.status === 'overdue');
             else if (currentContractFilter === 'pending') filtered = filtered.filter(c => c.status === 'pending');
 
             container.innerHTML = filtered.map(contract => {
                 const daysOverdue = contract.status === 'overdue' ? 
-                    Math.ceil((new Date() - new Date(contract.due_date)) / (1000 * 60 * 60 * 24)) : 0;
+                    Math.ceil((new Date('2026-07-20') - new Date(contract.due_date)) / (1000 * 60 * 60 * 24)) : 0;
 
                 return `
                 <div class="p-4 rounded-lg border ${contract.status === 'overdue' ? 'border-red-200 bg-red-50' : 'border-gray-200 bg-white'}">
                     <div class="flex items-start justify-between">
                         <div class="flex-1">
-                            <div class="flex items-center gap-2">
+                            <div class="flex items-center gap-2 flex-wrap">
                                 <h4 class="font-semibold text-gray-900">${contract.partner}</h4>
                                 <span class="badge badge-${contract.type === 'KOL' ? 'purple' : contract.type === 'Agency' ? 'blue' : 'gray'} text-xs">${contract.type}</span>
-                                ${contract.status === 'overdue' ? '<span class="badge badge-red text-xs"><i class="fas fa-exclamation-circle mr-1"></i>Quá hạn ' + daysOverdue + ' ngày</span>' : ''}
+                                ${contract.status === 'overdue' ? `<span class="badge badge-red text-xs"><i class="fas fa-exclamation-circle mr-1"></i>Quá hạn ${daysOverdue} ngày</span>` : ''}
                             </div>
-                            <div class="grid grid-cols-2 gap-4 mt-3 text-sm">
-                                <div>
-                                    <p class="text-gray-500">Giá trị</p>
-                                    <p class="font-bold text-gray-900">$${contract.value.toLocaleString()}</p>
-                                </div>
-                                <div>
-                                    <p class="text-gray-500">Hạn thanh toán</p>
-                                    <p class="font-bold ${contract.status === 'overdue' ? 'text-red-600' : 'text-gray-900'}">${contract.due_date}</p>
-                                </div>
-                                <div>
-                                    <p class="text-gray-500">Đã nhắc</p>
-                                    <p class="font-bold text-gray-900">${contract.reminders} lần</p>
-                                </div>
-                                <div>
-                                    <p class="text-gray-500">TT chuyển khoản</p>
-                                    <p class="text-gray-700">${contract.payment_info}</p>
-                                </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3 text-sm">
+                                <div><p class="text-gray-500">Giá trị</p><p class="font-bold text-gray-900">$${contract.value.toLocaleString()}</p></div>
+                                <div><p class="text-gray-500">Hạn thanh toán</p><p class="font-bold ${contract.status === 'overdue' ? 'text-red-600' : 'text-gray-900'}">${contract.due_date}</p></div>
+                                <div><p class="text-gray-500">Đã nhắc</p><p class="font-bold text-gray-900">${contract.reminders} lần</p></div>
+                                <div><p class="text-gray-500">TT chuyển khoản</p><p class="text-gray-700 text-xs">${contract.payment_info}</p></div>
                             </div>
                             ${contract.notes ? `<p class="text-sm text-amber-600 mt-2"><i class="fas fa-sticky-note mr-1"></i>${contract.notes}</p>` : ''}
                         </div>
-                        <div class="flex flex-col gap-2">
-                            <button class="btn btn-primary btn-sm" onclick="remindContract(${contract.id})">
-                                <i class="fas fa-bell"></i>Nhắc
-                            </button>
-                            <button class="btn btn-success btn-sm" onclick="payContract(${contract.id})">
-                                <i class="fas fa-check"></i>Đã TT
-                            </button>
+                        <div class="flex flex-col gap-2 ml-4">
+                            <button class="btn btn-primary btn-sm" onclick="remindContract(${contract.id})"><i class="fas fa-bell"></i>Nhắc</button>
+                            <button class="btn btn-success btn-sm" onclick="payContract(${contract.id})"><i class="fas fa-check"></i>Đã TT</button>
                         </div>
                     </div>
                 </div>
@@ -1619,24 +1289,16 @@
                     <td class="px-4 py-3 text-right">${ch.leads}</td>
                     <td class="px-4 py-3 text-right font-bold ${ch.roas >= 3 ? 'text-green-600' : 'text-amber-600'}">${ch.roas}x</td>
                     <td class="px-4 py-3 text-right">$${ch.cpl}</td>
-                    <td class="px-4 py-3 text-center">
-                        <span class="badge badge-${ch.rating === 'Xuất sắc' ? 'green' : ch.rating === 'Tốt' ? 'blue' : 'amber'} text-xs">${ch.rating}</span>
-                    </td>
+                    <td class="px-4 py-3 text-center"><span class="badge badge-${ch.rating === 'Xuất sắc' ? 'green' : ch.rating === 'Tốt' ? 'blue' : 'amber'} text-xs">${ch.rating}</span></td>
                 </tr>
             `).join('');
 
             document.getElementById('reportGood').innerHTML = appData.report.good.map(item => `
-                <li class="flex items-start gap-2 text-sm text-gray-700">
-                    <i class="fas fa-check-circle text-green-500 mt-0.5"></i>
-                    <span>${item}</span>
-                </li>
+                <li class="flex items-start gap-2 text-sm text-gray-700"><i class="fas fa-check-circle text-green-500 mt-0.5"></i><span>${item}</span></li>
             `).join('');
 
             document.getElementById('reportImprove').innerHTML = appData.report.improve.map(item => `
-                <li class="flex items-start gap-2 text-sm text-gray-700">
-                    <i class="fas fa-exclamation-circle text-amber-500 mt-0.5"></i>
-                    <span>${item}</span>
-                </li>
+                <li class="flex items-start gap-2 text-sm text-gray-700"><i class="fas fa-exclamation-circle text-amber-500 mt-0.5"></i><span>${item}</span></li>
             `).join('');
 
             document.getElementById('reportNextPlan').innerHTML = `<p class="text-sm text-gray-700">${appData.report.nextPlan}</p>`;
@@ -1644,9 +1306,7 @@
 
         function generatePDF() {
             showToast('Đang tạo PDF... (tính năng demo)');
-            setTimeout(() => {
-                showToast('PDF đã sẵn sàng để tải xuống!');
-            }, 1500);
+            setTimeout(() => showToast('PDF đã sẵn sàng để tải xuống!'), 1500);
         }
 
         function sendReport() {
@@ -1657,33 +1317,19 @@
         function renderPrompts() {
             const container = document.getElementById('promptsList');
             const search = document.getElementById('promptSearch')?.value?.toLowerCase() || '';
-
             let filtered = appData.prompts;
-            if (currentPromptFilter !== 'all') {
-                filtered = filtered.filter(p => p.category === currentPromptFilter);
-            }
-            if (search) {
-                filtered = filtered.filter(p => 
-                    p.title.toLowerCase().includes(search) || 
-                    p.tags.some(t => t.toLowerCase().includes(search))
-                );
-            }
+            if (currentPromptFilter !== 'all') filtered = filtered.filter(p => p.category === currentPromptFilter);
+            if (search) filtered = filtered.filter(p => p.title.toLowerCase().includes(search) || p.tags.some(t => t.toLowerCase().includes(search)));
 
             container.innerHTML = filtered.map(prompt => `
                 <div class="prompt-card">
-                    <button class="copy-btn btn btn-ghost btn-sm" onclick="copyPrompt(${prompt.id})">
-                        <i class="fas fa-copy"></i>
-                    </button>
+                    <button class="copy-btn btn btn-ghost btn-sm" onclick="copyPrompt(${prompt.id})"><i class="fas fa-copy"></i></button>
                     <div class="flex items-center gap-2 mb-2">
-                        <span class="badge badge-${prompt.category === 'caption' ? 'blue' : prompt.category === 'ads' ? 'green' : prompt.category === 'video' ? 'purple' : prompt.category === 'email' ? 'amber' : 'gray'} text-xs">
-                            ${prompt.category}
-                        </span>
+                        <span class="badge badge-${prompt.category === 'caption' ? 'blue' : prompt.category === 'ads' ? 'green' : prompt.category === 'video' ? 'purple' : prompt.category === 'email' ? 'amber' : 'gray'} text-xs">${prompt.category}</span>
                     </div>
                     <h4 class="font-semibold text-gray-900 mb-2">${prompt.title}</h4>
                     <p class="text-sm text-gray-600 line-clamp-3">${prompt.template}</p>
-                    <div class="flex gap-1 mt-3 flex-wrap">
-                        ${prompt.tags.map(tag => `<span class="text-xs text-gray-400">#${tag}</span>`).join('')}
-                    </div>
+                    <div class="flex gap-1 mt-3 flex-wrap">${prompt.tags.map(tag => `<span class="text-xs text-gray-400">#${tag}</span>`).join('')}</div>
                 </div>
             `).join('');
         }
@@ -1691,9 +1337,7 @@
         function copyPrompt(id) {
             const prompt = appData.prompts.find(p => p.id === id);
             if (prompt) {
-                navigator.clipboard.writeText(prompt.template).then(() => {
-                    showToast('Đã copy prompt!');
-                });
+                navigator.clipboard.writeText(prompt.template).then(() => showToast('Đã copy prompt!'));
             }
         }
 
@@ -1706,17 +1350,8 @@
             const category = document.getElementById('promptCategory').value;
             const template = document.getElementById('promptTemplate').value;
             const tags = document.getElementById('promptTags').value.split(',').map(t => t.trim()).filter(t => t);
-
             if (!title || !template) return;
-
-            appData.prompts.push({
-                id: Date.now(),
-                title,
-                template,
-                category,
-                tags
-            });
-
+            appData.prompts.push({ id: Date.now(), title, template, category, tags });
             closeModal('addPromptModal');
             renderPrompts();
             showToast('Đã thêm prompt mới');
@@ -1735,12 +1370,22 @@
             });
 
             // Plan month filters
-            document.querySelectorAll('[data-month]').forEach(btn => {
+            document.querySelectorAll('[data-plan-month]').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    document.querySelectorAll('[data-month]').forEach(b => b.classList.remove('active'));
+                    document.querySelectorAll('[data-plan-month]').forEach(b => b.classList.remove('active'));
                     this.classList.add('active');
-                    currentPlanMonth = parseInt(this.dataset.month);
-                    renderPlan();
+                    currentPlanMonth = parseInt(this.dataset.planMonth);
+                    renderKanban();
+                });
+            });
+
+            // Campaign filters for kanban
+            document.querySelectorAll('[data-campaign-filter]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('[data-campaign-filter]').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    currentCampaignFilter = this.dataset.campaignFilter;
+                    renderKanban();
                 });
             });
 
@@ -1766,6 +1411,36 @@
 
             // Prompt search
             document.getElementById('promptSearch')?.addEventListener('input', renderPrompts);
+
+            // P&L period filters
+            document.querySelectorAll('[data-pnl]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    document.querySelectorAll('[data-pnl]').forEach(b => {
+                        b.classList.remove('active', 'bg-white/20', 'text-white', 'border-white/30');
+                        b.classList.add('bg-white/10', 'text-white/70', 'border-white/20');
+                    });
+                    this.classList.remove('bg-white/10', 'text-white/70', 'border-white/20');
+                    this.classList.add('active', 'bg-white/20', 'text-white', 'border-white/30');
+                    currentPnlPeriod = this.dataset.pnl;
+                    updatePnlSummary();
+                });
+            });
+        }
+
+        function updatePnlSummary() {
+            const pnlData = {
+                month: { revenue: 24500, fixed: 2149, campaign: 13931, profit: 8420, margin: 34.4 },
+                quarter: { revenue: 68200, fixed: 6447, campaign: 38500, profit: 23253, margin: 34.1 },
+                year: { revenue: 245800, fixed: 25788, campaign: 152000, profit: 68012, margin: 27.7 }
+            };
+            const data = pnlData[currentPnlPeriod];
+            const container = document.getElementById('pnlSummary');
+            container.innerHTML = `
+                <div class="text-center"><p class="text-sm text-gray-300">Tổng thu</p><p class="text-2xl font-bold text-white">$${data.revenue.toLocaleString()}</p></div>
+                <div class="text-center"><p class="text-sm text-gray-300">Tổng chi</p><p class="text-2xl font-bold text-white">$${(data.fixed + data.campaign).toLocaleString()}</p></div>
+                <div class="text-center"><p class="text-sm text-gray-300">Lợi nhuận</p><p class="text-2xl font-bold pnl-positive">+$${data.profit.toLocaleString()}</p></div>
+                <div class="text-center"><p class="text-sm text-gray-300">Biên LN</p><p class="text-2xl font-bold pnl-positive">${data.margin}%</p></div>
+            `;
         }
 
         // ==================== UTILS ====================
@@ -1781,7 +1456,6 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // Close modals on backdrop click
         document.querySelectorAll('.modal').forEach(modal => {
             modal.addEventListener('click', function(e) {
                 if (e.target === this) this.classList.remove('active');
